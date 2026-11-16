@@ -1,6 +1,6 @@
 "use strict"
-const { Plugin, Slot, createKeyed } = require("@opencode/plugin/gui")
-const { createSignal, createEffect, onCleanup } = require("solid-js")
+const { Plugin, ComposerPill, createKeyed } = require("@opencode/plugin/gui")
+const { createSignal, onCleanup } = require("solid-js")
 
 const clock = (at) =>
   new Date(at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })
@@ -29,28 +29,17 @@ exports.default = Plugin.define({
         ),
     )
 
-    const SVG =
-      '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>'
-
-    ctx.add(Slot, {
-      at: "session.header",
-      order: 100,
-      render: (input) => {
-        const el = document.createElement("span")
-        el.title = "Time of the last received message"
-        el.style.cssText =
-          "display:inline-flex;align-items:center;gap:6px;opacity:.7;font-size:12px;white-space:nowrap;pointer-events:none;user-select:none"
-        createEffect(() => {
-          const id = input.session.id
-          let at
-          try {
-            at = lastTime(input.session.server.data.session.message.list(id))
-          } catch {}
-          at = at || seen()[id]
-          el.style.display = at ? "inline-flex" : "none"
-          el.innerHTML = at ? SVG + "<span>Last reply " + clock(at) + "</span>" : ""
-        })
-        return el
+    ctx.add(ComposerPill, {
+      id: "last-reply",
+      show: (input) => {
+        const id = input.session.id
+        let at
+        try {
+          at = lastTime(input.session.server.data.session.message.list(id))
+        } catch {}
+        at = at || seen()[id]
+        if (!at) return undefined
+        return { icon: "clock", label: "Last reply " + clock(at), title: "Time of the last received message" }
       },
     })
   },
