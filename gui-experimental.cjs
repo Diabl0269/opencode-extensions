@@ -39,7 +39,7 @@ exports.default = Plugin.define({
         } catch {}
         at = at || seen()[id]
         if (!at) return undefined
-        return { icon: "clock", label: "Last reply " + clock(at), title: "Time of the last received message" }
+        return { icon: "history", label: "Last reply " + clock(at), title: "Time of the last received message" }
       },
     })
   },
