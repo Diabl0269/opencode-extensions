@@ -1,0 +1,24 @@
+{
+  "name": "opencode-last-message-time",
+  "version": "0.1.0",
+  "description": "OpenCode TUI plugin that shows when the last assistant reply was received",
+  "type": "module",
+  "license": "MIT",
+  "author": "Diabl0269",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Diabl0269/opencode-last-message-time.git"
+  },
+  "exports": {
+    "./tui": "./src/tui.tsx"
+  },
+  "files": ["src"],
+  "dependencies": {
+    "@opencode/plugin": "latest"
+  },
+  "peerDependencies": {
+    "@opentui/core": ">=0.6.6",
+    "@opentui/solid": ">=0.6.6",
+    "solid-js": ">=1.9.0"
+  }
+}
