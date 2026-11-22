@@ -1,0 +1,22 @@
+{
+  "name": "opencode-model-costs",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "author": "Diabl0269",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Diabl0269/opencode-extensions.git",
+    "directory": "extensions/model-costs"
+  },
+  "exports": {
+    ".": "./index.ts"
+  },
+  "dependencies": {
+    "@opencode/plugin": "latest"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  }
+}

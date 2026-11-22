@@ -1,35 +1,36 @@
-# opencode-last-message-time
+# OpenCode Extensions
 
-OpenCode TUI plugin that shows the time the last assistant reply was received
-(e.g. `Last reply 14:32:05 (2m ago)`) in the prompt footer status area.
+A collection of OpenCode V2 extensions by Diabl0269.
 
-## Install
+## Extensions
 
-**Desktop app** (reads `opencode.json`, not `cli.json`) - add to `~/.config/opencode/opencode.json`:
+| Extension | Description |
+| --- | --- |
+| [`last-message-time`](extensions/last-message-time/) | Shows when the last assistant reply was received. |
+| [`model-costs`](extensions/model-costs/) | Adds exact token prices to the original OpenCode model picker. |
 
-```json
-{ "plugins": ["github:Diabl0269/opencode-last-message-time"] }
+## Install a local extension
+
+Clone this repository, then add the desired extension directory to your OpenCode configuration:
+
+```jsonc
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugins": [
+    "/path/to/opencode-extensions/extensions/last-message-time",
+    "/path/to/opencode-extensions/extensions/model-costs"
+  ]
+}
 ```
 
-The pill appears above the composer: `Last reply 14:32:05`.
+Desktop loads plugins from `opencode.json` or `opencode.jsonc`. TUI-only extensions can be configured in `cli.json` when appropriate; see each extension's README.
 
-**Terminal UI** - add to `~/.config/opencode/cli.json`:
+## Repository layout
 
-Add to `~/.config/opencode/cli.json`:
-
-```json
-{ "plugins": ["github:Diabl0269/opencode-last-message-time"] }
+```text
+extensions/
+  last-message-time/
+  model-costs/
 ```
 
-Or clone the repo and reference the local path:
-
-```json
-{ "plugins": ["/path/to/opencode-last-message-time"] }
-```
-
-## Notes
-
-- The Desktop GUI plugin API is experimental. The time is read from the last assistant message, falling back to the moment a run finishes.
-- OpenCode's plugin API has no slot inside the per-message metadata line
-  (model / tokens / duration), so the time is shown in the prompt footer.
-- The time shows after the first reply received in the current TUI run.
+Add future extensions under `extensions/<extension-name>/` with their own `package.json`, README, source, and tests.
