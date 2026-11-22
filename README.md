@@ -7,7 +7,7 @@ A collection of OpenCode V2 extensions by Diabl0269.
 | Extension | Description |
 | --- | --- |
 | [`last-message-time`](extensions/last-message-time/) | Shows when the last assistant reply was received. |
-| [`model-costs`](extensions/model-costs/) | Adds exact token prices to the original OpenCode model picker. |
+| [`model-costs`](extensions/model-costs/) | Adds dynamic prices from OpenCode’s model catalog to the original model picker. |
 
 ## Install a local extension
 
